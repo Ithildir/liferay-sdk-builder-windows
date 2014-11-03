@@ -28,7 +28,7 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.tools.generic.EscapeTool;
 
 /**
- * @author Andrea Di Giorgi (adigiorgi@outlook.com)
+ * @author Andrea Di Giorgi
  */
 public class WindowsSDKBuilder extends BaseBuilder {
 
@@ -42,10 +42,10 @@ public class WindowsSDKBuilder extends BaseBuilder {
 
 		if (Validator.isNotNull(destination)) {
 			sb.append(destination);
-			sb.append("/windows/");
+			sb.append(CharPool.SLASH);
 		}
 
-		sb.append("Liferay.SDK/Service");
+		sb.append("windows/Liferay.SDK/Service");
 		destination = sb.toString();
 
 		VelocityContext context = getVelocityContext(
