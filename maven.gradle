@@ -17,14 +17,14 @@ install {
 				}
 			}
 			scm {
-				url 'https://github.com/brunofarache/liferay-sdk-builder-sample'
-				connection 'scm:git:git://github.com/brunofarache/liferay-sdk-builder-sample.git'
+				url 'https://github.com/Ithildir/liferay-sdk-builder-windows'
+				connection 'scm:git:git://github.com/Ithildir/liferay-sdk-builder-windows.git'
 			}
 			developers {
 				developer {
-					id 'brunofarache'
-					name 'Bruno Farache'
-					email 'bruno.farache@liferay.com'
+					id 'Ithildir'
+					name 'Andrea Di Giorgi'
+					email 'adigiorgi@outlook.com'
 				}
 			}
 		}
