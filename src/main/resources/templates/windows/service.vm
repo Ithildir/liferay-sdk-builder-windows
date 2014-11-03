@@ -1,5 +1,3 @@
-#parse ("macros.vm")
-
 //------------------------------------------------------------------------------
 // <copyright file=${esc.q}${className}.cs${esc.q}>
 //    Copyright (c) 2014 Andrea Di Giorgi. All rights reserved.
