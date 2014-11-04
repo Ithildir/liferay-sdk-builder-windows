@@ -27,7 +27,7 @@ namespace Liferay.SDK.Test
         [TestMethod]
         public void TestGetPortalVersion()
         {
-            int portalVersion = PortalVersionUtil.GetPortalVersionAsync(this.Session).Result;
+            var portalVersion = PortalVersionUtil.GetPortalVersionAsync(this.Session).Result;
             
             if (portalVersion < PortalVersion.V62)
             {

@@ -35,7 +35,7 @@ namespace Liferay.SDK.Test
 
             var uuid = random.Next().ToString();
 
-            JsonObjectWrapper serviceContext = new JsonObjectWrapper();
+            var serviceContext = new JsonObjectWrapper();
 
             serviceContext.JsonObject.uuid = uuid;
             serviceContext.JsonObject.addGroupPermissions = true;

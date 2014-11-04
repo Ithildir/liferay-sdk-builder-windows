@@ -34,7 +34,7 @@ namespace Liferay.SDK.Test
         [TestMethod]
         public void TestAddBookmarkEntrySpecialChars()
         {
-            string name = "entry áéíòúñ";
+            var name = "entry áéíòúñ";
 
             var entry = this.serviceContextTest.AddBookmarkEntryAsync(name, null).Result;
 

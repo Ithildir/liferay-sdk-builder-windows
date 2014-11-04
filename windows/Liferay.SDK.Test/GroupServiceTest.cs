@@ -35,7 +35,7 @@ namespace Liferay.SDK.Test
             Assert.IsNotNull(userSites);
             Assert.AreEqual(2, userSites.Count());
 
-            dynamic group = userSites.ElementAt(0);
+            var group = userSites.ElementAt(0);
 
             Assert.AreEqual("/test", (string)group.friendlyURL);
 
