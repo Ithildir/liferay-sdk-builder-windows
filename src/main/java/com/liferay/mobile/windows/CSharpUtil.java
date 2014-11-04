@@ -18,6 +18,8 @@ import com.liferay.mobile.sdk.util.CharPool;
 import com.liferay.mobile.sdk.util.LanguageUtil;
 import com.liferay.mobile.sdk.util.Validator;
 
+import org.apache.commons.lang.WordUtils;
+
 /**
  * @author Andrea Di Giorgi
  */
@@ -114,6 +116,16 @@ public class CSharpUtil extends LanguageUtil {
 		}
 
 		return type;
+	}
+
+	public String getServicePackageName(String serviceContext) {
+		String className = CLASS_NAMES.get(serviceContext);
+
+		if (className == null) {
+			className = WordUtils.capitalize(serviceContext);
+		}
+
+		return className;
 	}
 
 	public String getType(String type) {
