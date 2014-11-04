@@ -113,6 +113,7 @@
     <SDKReference Include="TestPlatform, Version=11.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DLAppServiceTest.cs" />
     <Compile Include="GroupServiceTest.cs" />
     <Compile Include="OrderByComparatorTest.cs" />
     <Compile Include="PortalVersionTest.cs" />
