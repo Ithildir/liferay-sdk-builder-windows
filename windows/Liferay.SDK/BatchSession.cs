@@ -19,6 +19,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Liferay.SDK.Http;
 
 namespace Liferay.SDK
 {
@@ -26,9 +27,19 @@ namespace Liferay.SDK
 	{
 		private JsonArray commands = new JsonArray();
 
+		public BatchSession(ISession session)
+			: base(session)
+		{
+		}
+
 		public BatchSession(Uri server, string username, string password)
 			: base(server, username, password)
 		{
+		}
+
+		public async Task<IEnumerable<dynamic>> InvokeAsync()
+		{
+			return await HttpUtil.PostAsync(this, this.commands);
 		}
 
 		public override Task<object> InvokeAsync(IDictionary<string, object> command)
