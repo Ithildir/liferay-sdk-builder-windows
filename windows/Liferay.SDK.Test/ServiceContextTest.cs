@@ -23,43 +23,43 @@ using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace Liferay.SDK.Test
 {
-    [TestClass]
-    public class ServiceContextTest : TestBase
-    {
-        public const long ParentFolderId = 0;
+	[TestClass]
+	public class ServiceContextTest : TestBase
+	{
+		public const long ParentFolderId = 0;
 
-        [TestMethod]
-        public void TestAddBookmarkEntry()
-        {
-            var random = new Random();
+		[TestMethod]
+		public async Task TestAddBookmarkEntry()
+		{
+			var random = new Random();
 
-            var uuid = random.Next().ToString();
+			var uuid = random.Next().ToString();
 
-            var serviceContext = new JsonObjectWrapper();
+			var serviceContext = new JsonObjectWrapper();
 
-            serviceContext.JsonObject.uuid = uuid;
-            serviceContext.JsonObject.addGroupPermissions = true;
-            serviceContext.JsonObject.addGuestPermissions = true;
+			serviceContext.JsonObject.uuid = uuid;
+			serviceContext.JsonObject.addGroupPermissions = true;
+			serviceContext.JsonObject.addGuestPermissions = true;
 
-            var entry = this.AddBookmarkEntryAsync("test", serviceContext).Result;
+			var entry = await this.AddBookmarkEntryAsync("test", serviceContext);
 
-            Assert.AreEqual(uuid, entry.uuid);
+			Assert.AreEqual(uuid, entry.uuid);
 
-            this.DeleteBookmarkEntryAsync(entry);
-        }
+			this.DeleteBookmarkEntryAsync(entry);
+		}
 
-        public async Task<dynamic> AddBookmarkEntryAsync(string name, JsonObjectWrapper serviceContext)
-        {
-            var service = new BookmarksEntryService(this.Session);
+		public async Task<dynamic> AddBookmarkEntryAsync(string name, JsonObjectWrapper serviceContext)
+		{
+			var service = new BookmarksEntryService(this.Session);
 
-            return await service.AddEntryAsync(ServiceContextTest.GroupId, ServiceContextTest.ParentFolderId, name, "http://www.liferay.com", string.Empty, serviceContext);
-        }
+			return await service.AddEntryAsync(ServiceContextTest.GroupId, ServiceContextTest.ParentFolderId, name, "http://www.liferay.com", string.Empty, serviceContext);
+		}
 
-        public async Task DeleteBookmarkEntryAsync(dynamic entry)
-        {
-            var service = new BookmarksEntryService(this.Session);
+		public async Task DeleteBookmarkEntryAsync(dynamic entry)
+		{
+			var service = new BookmarksEntryService(this.Session);
 
-            await service.DeleteEntryAsync(entry.entryId);
-        }
-    }
+			await service.DeleteEntryAsync(entry.entryId);
+		}
+	}
 }

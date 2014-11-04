@@ -17,31 +17,32 @@
 //------------------------------------------------------------------------------
 
 using System.Linq;
+using System.Threading.Tasks;
 using Liferay.SDK.Service.V62.Group;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace Liferay.SDK.Test
 {
-    [TestClass]
-    public class GroupServiceTest : TestBase
-    {
-        [TestMethod]
-        public void TestGetUserSites()
-        {
-            var groupService = new GroupService(this.Session);
+	[TestClass]
+	public class GroupServiceTest : TestBase
+	{
+		[TestMethod]
+		public async Task TestGetUserSites()
+		{
+			var groupService = new GroupService(this.Session);
 
-            var userSites = groupService.GetUserSitesAsync().Result;
+			var userSites = await groupService.GetUserSitesAsync();
 
-            Assert.IsNotNull(userSites);
-            Assert.AreEqual(2, userSites.Count());
+			Assert.IsNotNull(userSites);
+			Assert.AreEqual(2, userSites.Count());
 
-            var group = userSites.ElementAt(0);
+			var group = userSites.ElementAt(0);
 
-            Assert.AreEqual("/test", (string)group.friendlyURL);
+			Assert.AreEqual("/test", (string)group.friendlyURL);
 
-            group = userSites.ElementAt(1);
+			group = userSites.ElementAt(1);
 
-            Assert.AreEqual("/guest", (string)group.friendlyURL);
-        }
-    }
+			Assert.AreEqual("/guest", (string)group.friendlyURL);
+		}
+	}
 }

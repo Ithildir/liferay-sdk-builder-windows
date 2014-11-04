@@ -17,23 +17,24 @@
 //------------------------------------------------------------------------------
 
 using System.Linq;
+using System.Threading.Tasks;
 using Liferay.SDK.Service.V62.Portlet;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace Liferay.SDK.Test
 {
-    [TestClass]
-    public class PortletServiceTest : TestBase
-    {
-        [TestMethod]
-        public void TestGetWarPortlets()
-        {
-            var service = new PortletService(this.Session);
+	[TestClass]
+	public class PortletServiceTest : TestBase
+	{
+		[TestMethod]
+		public async Task TestGetWarPortlets()
+		{
+			var service = new PortletService(this.Session);
 
-            var array = service.GetWarPortletsAsync().Result;
+			var array = await service.GetWarPortletsAsync();
 
-            Assert.IsNotNull(array);
-            Assert.IsTrue(array.Count() > 0);
-        }
-    }
+			Assert.IsNotNull(array);
+			Assert.IsTrue(array.Count() > 0);
+		}
+	}
 }

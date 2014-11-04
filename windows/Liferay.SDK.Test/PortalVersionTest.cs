@@ -16,23 +16,24 @@
 // <website>https://github.com/Ithildir/liferay-sdk-builder-windows</website>
 //------------------------------------------------------------------------------
 
+using System.Threading.Tasks;
 using Liferay.SDK.Util;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace Liferay.SDK.Test
 {
-    [TestClass]
-    public class PortalVersionTest : TestBase
-    {
-        [TestMethod]
-        public void TestGetPortalVersion()
-        {
-            var portalVersion = PortalVersionUtil.GetPortalVersionAsync(this.Session).Result;
-            
-            if (portalVersion < PortalVersion.V62)
-            {
-                Assert.Fail();
-            }
-        }
-    }
+	[TestClass]
+	public class PortalVersionTest : TestBase
+	{
+		[TestMethod]
+		public async Task TestGetPortalVersion()
+		{
+			var portalVersion = await PortalVersionUtil.GetPortalVersionAsync(this.Session);
+
+			if (portalVersion < PortalVersion.V62)
+			{
+				Assert.Fail();
+			}
+		}
+	}
 }

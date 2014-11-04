@@ -20,21 +20,21 @@ using System;
 
 namespace Liferay.SDK.Test
 {
-    public abstract class TestBase
-    {
-        protected const long GroupId = 10185;
-        
-        private const string Password = "test";
+	public abstract class TestBase
+	{
+		protected const long GroupId = 10184;
 
-        private const string Server = "http://localhost:8080";
+		private const string Password = "test";
 
-        private const string UserName = "test@liferay.com";
+		private const string Server = "http://localhost:8080";
 
-        protected TestBase()
-        {
-            this.Session = new Session(new Uri(Server), UserName, Password);
-        }
+		private const string UserName = "test@liferay.com";
 
-        public ISession Session { get; private set; }
-    }
+		protected TestBase()
+		{
+			this.Session = new Session(new Uri(Server), UserName, Password);
+		}
+
+		public ISession Session { get; private set; }
+	}
 }

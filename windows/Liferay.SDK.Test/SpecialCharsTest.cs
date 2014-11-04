@@ -16,31 +16,32 @@
 // <website>https://github.com/Ithildir/liferay-sdk-builder-windows</website>
 //------------------------------------------------------------------------------
 
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace Liferay.SDK.Test
 {
-    [TestClass]
-    public class SpecialCharsTest : TestBase
-    {
-        private ServiceContextTest serviceContextTest;
-        
-        [TestInitialize]
-        public void Initialize()
-        {
-            this.serviceContextTest = new ServiceContextTest();
-        }
+	[TestClass]
+	public class SpecialCharsTest : TestBase
+	{
+		private ServiceContextTest serviceContextTest;
 
-        [TestMethod]
-        public void TestAddBookmarkEntrySpecialChars()
-        {
-            var name = "entry áéíòúñ";
+		[TestInitialize]
+		public void Initialize()
+		{
+			this.serviceContextTest = new ServiceContextTest();
+		}
 
-            var entry = this.serviceContextTest.AddBookmarkEntryAsync(name, null).Result;
+		[TestMethod]
+		public async Task TestAddBookmarkEntrySpecialChars()
+		{
+			var name = "entry áéíòúñ";
 
-            Assert.AreEqual(name, entry.name);
+			var entry = await this.serviceContextTest.AddBookmarkEntryAsync(name, null);
 
-            this.serviceContextTest.DeleteBookmarkEntryAsync(entry);
-        }
-    }
+			Assert.AreEqual(name, entry.name);
+
+			this.serviceContextTest.DeleteBookmarkEntryAsync(entry);
+		}
+	}
 }

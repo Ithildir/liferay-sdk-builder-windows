@@ -23,63 +23,61 @@ using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace Liferay.SDK.Test
 {
-    [TestClass]
-    public class OrderByComparatorTest : TestBase
-    {
-        private dynamic entryA;
-        private dynamic entryZ;
-        private ServiceContextTest serviceContextTest;
+	[TestClass]
+	public class OrderByComparatorTest : TestBase
+	{
+		private dynamic entryA;
+		private dynamic entryZ;
+		private ServiceContextTest serviceContextTest;
 
-        [TestCleanup]
-        public void Cleanup()
-        {
-            Task taskA = this.serviceContextTest.DeleteBookmarkEntryAsync(this.entryA);
-            Task taskZ = this.serviceContextTest.DeleteBookmarkEntryAsync(this.entryZ);
+		[TestCleanup]
+		public async Task Cleanup()
+		{
+			await this.serviceContextTest.DeleteBookmarkEntryAsync(this.entryA);
+			await this.serviceContextTest.DeleteBookmarkEntryAsync(this.entryZ);
+		}
 
-            Task.WaitAll(taskA, taskZ);
-        }
+		[TestInitialize]
+		public async Task Initialize()
+		{
+			this.serviceContextTest = new ServiceContextTest();
 
-        [TestInitialize]
-        public void Initialize()
-        {
-            this.serviceContextTest = new ServiceContextTest();
+			this.entryA = await this.serviceContextTest.AddBookmarkEntryAsync("A", null);
+			this.entryZ = await this.serviceContextTest.AddBookmarkEntryAsync("Z", null);
+		}
 
-            this.entryA = this.serviceContextTest.AddBookmarkEntryAsync("A", null).Result;
-            this.entryZ = this.serviceContextTest.AddBookmarkEntryAsync("Z", null).Result;
-        }
-
-        [TestMethod]
-        public void TestGetEntriesDescending()
-        {
-            var service = new BookmarksEntryService(this.Session);
-
-            var className = "com.liferay.portlet.bookmarks.util.comparator.EntryNameComparator";
-
-            var orderByComparator = new JsonObjectWrapper(className);
-
-            var entries = service.GetEntriesAsync(OrderByComparatorTest.GroupId, ServiceContextTest.ParentFolderId, -1, -1, orderByComparator).Result;
-
-            var first = entries.First();
-            var second = entries.ElementAt(1);
-
-            Assert.AreEqual("Z", first.name);
-            Assert.AreEqual("A", second.name);
-        }
-
-        [TestMethod]
-        public void TestNullOrderByComparator()
-        {
+		[TestMethod]
+		public async Task TestGetEntriesDescending()
+		{
 			var service = new BookmarksEntryService(this.Session);
 
-            var entries = service.GetEntriesAsync(OrderByComparatorTest.GroupId, ServiceContextTest.ParentFolderId, -1, -1, null).Result;
+			var className = "com.liferay.portlet.bookmarks.util.comparator.EntryNameComparator";
 
-            Assert.AreEqual(2, entries.Count());
+			var orderByComparator = new JsonObjectWrapper(className);
 
-            var first = entries.First();
-            var second = entries.ElementAt(1);
+			var entries = await service.GetEntriesAsync(OrderByComparatorTest.GroupId, ServiceContextTest.ParentFolderId, -1, -1, orderByComparator);
 
-            Assert.AreEqual("A", first.name);
-            Assert.AreEqual("Z", second.name);
-        }
-    }
+			var first = entries.First();
+			var second = entries.ElementAt(1);
+
+			Assert.AreEqual("Z", first.name);
+			Assert.AreEqual("A", second.name);
+		}
+
+		[TestMethod]
+		public async Task TestNullOrderByComparator()
+		{
+			var service = new BookmarksEntryService(this.Session);
+
+			var entries = await service.GetEntriesAsync(OrderByComparatorTest.GroupId, ServiceContextTest.ParentFolderId, -1, -1, null);
+
+			Assert.AreEqual(2, entries.Count());
+
+			var first = entries.First();
+			var second = entries.ElementAt(1);
+
+			Assert.AreEqual("A", first.name);
+			Assert.AreEqual("Z", second.name);
+		}
+	}
 }

@@ -24,40 +24,26 @@ using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace Liferay.SDK.Test
 {
-    [TestClass]
-    public class UnauthenticatedServiceTest : TestBase
-    {
-        [TestMethod]
-        public void TestGetUserSitesUnauthenticated()
-        {
-            var session = new Session(this.Session.Server);
+	[TestClass]
+	public class UnauthenticatedServiceTest : TestBase
+	{
+		[TestMethod]
+		public async Task TestGetUserSitesUnauthenticated()
+		{
+			var session = new Session(this.Session.Server);
 
-            var service = new GroupService(session);
+			var service = new GroupService(session);
 
-            try
-            {
-                Task task = service.GetUserSitesAsync();
+			try
+			{
+				await service.GetUserSitesAsync();
 
-                task.Wait();
-
-                Assert.Fail();
-            }
-            catch (AggregateException ae)
-            {
-                ae.Handle((e) =>
-                {
-                    if (e is ServerException)
-                    {
-                        Assert.AreEqual("Authenticated access required", e.Message);
-
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                });
-            }
-        }
-    }
+				Assert.Fail();
+			}
+			catch (ServerException se)
+			{
+				Assert.AreEqual("Authenticated access required", se.Message);
+			}
+		}
+	}
 }
