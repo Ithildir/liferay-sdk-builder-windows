@@ -31,6 +31,11 @@ namespace Liferay.SDK
 	{
 		public const int DefaultConnectionTimeout = 15000;
 
+		public Session(ISession session)
+			: this(session.Server, session.UserName, session.Password, session.ConnectionTimeout)
+		{
+		}
+
 		public Session(Uri server, int connectionTimeout = DefaultConnectionTimeout)
 			: this(server, null, null, connectionTimeout)
 		{
