@@ -39,14 +39,21 @@ namespace Liferay.SDK
 
 		public async Task<IEnumerable<dynamic>> InvokeAsync()
 		{
-			return await HttpUtil.PostAsync(this, this.commands);
+			try
+			{
+				return await HttpUtil.PostAsync(this, this.commands);
+			}
+			finally
+			{
+				this.commands.Clear();
+			}
 		}
 
 		public override Task<object> InvokeAsync(IDictionary<string, object> command)
 		{
 			this.commands.Add(command);
 
-			return null;
+			return Task.FromResult<object>(null);
 		}
 
 		public override Task<object> UploadAsync(IDictionary<string, object> command)
