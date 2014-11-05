@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.windows;
+package com.github.ithildir.liferay.mobile.windows;
 
 import com.liferay.mobile.sdk.BaseBuilder;
 import com.liferay.mobile.sdk.http.Discovery;
