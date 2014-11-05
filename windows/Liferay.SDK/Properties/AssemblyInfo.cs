@@ -6,9 +6,11 @@ using System.Resources;
 // associated with an assembly.
 [assembly: AssemblyTitle("Liferay SDK for Windows")]
 [assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Liferay SDK for Windows")]
 [assembly: AssemblyCopyright("Copyright (c) 2014 Andrea Di Giorgi. All rights reserved.")]
-[assembly: AssemblyTrademarkAttribute("Liferay is a registered trademark of Liferay, Inc.")]
+[assembly: AssemblyTrademark("Liferay is a registered trademark of Liferay, Inc.")]
 [assembly: NeutralResourcesLanguage("en")]
 
 // Version information for an assembly consists of the following four values:
@@ -21,5 +23,5 @@ using System.Resources;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersionAttribute("1.0.0.0")]
-[assembly: AssemblyFileVersionAttribute("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
