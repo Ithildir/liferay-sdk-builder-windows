@@ -22,7 +22,20 @@ import com.liferay.mobile.sdk.util.Validator;
 import com.liferay.mobile.sdk.velocity.VelocityUtil;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
+import java.net.JarURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+
+import java.util.Enumeration;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.tools.generic.EscapeTool;
 
@@ -33,6 +46,85 @@ public class WindowsSDKBuilder extends BaseBuilder {
 
 	@Override
 	public void build(
+			Discovery discovery, String packageName, int version, String filter,
+			String destination)
+		throws Exception {
+
+		copyResource("windows", destination);
+		generateService(discovery, packageName, version, filter, destination);
+	}
+
+	protected void copyJarResource(
+			JarURLConnection jarConnection, File destinationDir)
+		throws IOException {
+
+		String jarConnectionEntryName = jarConnection.getEntryName();
+		JarFile jarFile = jarConnection.getJarFile();
+
+		Enumeration<JarEntry> enu = jarFile.entries();
+
+		while (enu.hasMoreElements()) {
+			JarEntry jarEntry = enu.nextElement();
+			String jarEntryName = jarEntry.getName();
+
+			if (jarEntryName.startsWith(jarConnectionEntryName)) {
+				String fileName = jarEntryName;
+
+				if (fileName.startsWith(jarConnectionEntryName)) {
+					fileName = fileName.substring(
+						jarConnectionEntryName.length());
+				}
+
+				File file = new File(destinationDir, fileName);
+
+				if (jarEntry.isDirectory()) {
+					file.mkdirs();
+				}
+				else {
+					InputStream is = null;
+					OutputStream os = null;
+
+					try {
+						is = jarFile.getInputStream(jarEntry);
+						os = FileUtils.openOutputStream(file);
+
+						IOUtils.copy(is, os);
+					}
+					finally {
+						IOUtils.closeQuietly(is);
+						IOUtils.closeQuietly(os);
+					}
+				}
+			}
+		}
+	}
+
+	protected void copyResource(String name, String destination)
+		throws IOException {
+
+		File destinationDir = new File(destination);
+
+		destinationDir = destinationDir.getAbsoluteFile();
+		destinationDir = new File(destinationDir, CharPool.SLASH + name);
+
+		if (destinationDir.exists()) {
+			return;
+		}
+
+		URL sourceURL = getClass().getResource(CharPool.SLASH + name);
+		URLConnection sourceConnection = sourceURL.openConnection();
+
+		if (sourceConnection instanceof JarURLConnection) {
+			copyJarResource((JarURLConnection)sourceConnection, destinationDir);
+		}
+		else {
+			File sourceDir = new File(sourceURL.getPath());
+
+			FileUtils.copyDirectory(sourceDir, destinationDir);
+		}
+	}
+
+	protected void generateService(
 			Discovery discovery, String packageName, int version, String filter,
 			String destination)
 		throws Exception {
