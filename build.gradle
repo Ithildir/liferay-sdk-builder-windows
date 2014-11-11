@@ -18,12 +18,33 @@ configurations {
 
 dependencies {
 	compile group: 'com.liferay.mobile', name: 'liferay-sdk-builder', version: '6.2.0.+'
+	compile group: 'commons-io', name: 'commons-io', version: '2.4'
 
 	formatter group: 'com.liferay.portal', name: 'portal-impl', version: '6.2.0-ga1'
 	formatter group: 'com.liferay.portal', name: 'portal-service', version: '6.2.0-ga1'
 	formatter group: 'com.liferay.portal', name: 'util-java', version: '6.2.0-ga1'
 	formatter group: 'dom4j', name: 'dom4j', version: '1.6.1'
 	formatter group: 'org.apache.ant', name: 'ant', version: '1.8.2'
+}
+
+sourceSets {
+	main {
+		resources {
+			exclude '**/*.Cache'
+			exclude '**/*.pfx'
+			exclude '**/*.suo'
+			exclude '**/Debug'
+			exclude '**/Debug/**'
+			exclude '**/Release'
+			exclude '**/Release/**'
+			exclude '**/bin'
+			exclude '**/bin/**'
+			exclude '**/obj'
+			exclude '**/obj/**'
+			exclude '**/packages'
+			exclude '**/packages/**'
+		}
+	}
 }
 
 task format(type: JavaExec) {
