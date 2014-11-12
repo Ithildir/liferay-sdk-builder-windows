@@ -31,10 +31,12 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.tools.generic.EscapeTool;
@@ -121,6 +123,22 @@ public class WindowsSDKBuilder extends BaseBuilder {
 			File sourceDir = new File(sourceURL.getPath());
 
 			FileUtils.copyDirectory(sourceDir, destinationDir);
+		}
+
+		Iterator<File> itr = FileUtils.iterateFiles(
+			destinationDir, new String[] {"copy"}, true);
+
+		while (itr.hasNext()) {
+			File file = itr.next();
+
+			String cleanPath = FilenameUtils.removeExtension(
+				file.getAbsolutePath());
+
+			File cleanFile = new File(cleanPath);
+
+			if (!cleanFile.exists()) {
+				FileUtils.moveFile(file, new File(cleanPath));
+			}
 		}
 	}
 
