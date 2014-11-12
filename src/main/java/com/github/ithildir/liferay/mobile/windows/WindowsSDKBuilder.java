@@ -157,6 +157,8 @@ public class WindowsSDKBuilder extends BaseBuilder {
 		sb.append("windows/Liferay.SDK/Service");
 		destination = sb.toString();
 
+		packageName = "Liferay.SDK.Service";
+
 		VelocityContext context = getVelocityContext(
 			discovery, packageName, version, filter);
 
