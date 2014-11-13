@@ -25,11 +25,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.jar.JarEntry;
@@ -79,6 +77,10 @@ public class WindowsSDKBuilder extends BaseBuilder {
 
 				File file = new File(destinationDir, fileName);
 
+				if (file.exists()) {
+					continue;
+				}
+
 				if (jarEntry.isDirectory()) {
 					file.mkdirs();
 				}
@@ -107,11 +109,6 @@ public class WindowsSDKBuilder extends BaseBuilder {
 		File destinationDir = new File(destination);
 
 		destinationDir = destinationDir.getAbsoluteFile();
-		destinationDir = new File(destinationDir, CharPool.SLASH + name);
-
-		if (destinationDir.exists()) {
-			return;
-		}
 
 		URL sourceURL = getClass().getResource(CharPool.SLASH + name);
 		URLConnection sourceConnection = sourceURL.openConnection();
@@ -139,6 +136,9 @@ public class WindowsSDKBuilder extends BaseBuilder {
 			if (!cleanFile.exists()) {
 				FileUtils.moveFile(file, new File(cleanPath));
 			}
+			else {
+				file.delete();
+			}
 		}
 	}
 
@@ -154,7 +154,7 @@ public class WindowsSDKBuilder extends BaseBuilder {
 			sb.append(CharPool.SLASH);
 		}
 
-		sb.append("windows/Liferay.SDK/Service");
+		sb.append("Liferay.SDK/Service");
 		destination = sb.toString();
 
 		packageName = "Liferay.SDK.Service";
