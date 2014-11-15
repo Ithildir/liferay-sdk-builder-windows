@@ -24,10 +24,11 @@ import com.liferay.mobile.sdk.velocity.VelocityUtil;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
+
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.jar.JarEntry;
@@ -77,26 +78,19 @@ public class WindowsSDKBuilder extends BaseBuilder {
 
 				File file = new File(destinationDir, fileName);
 
-				if (file.exists()) {
-					continue;
-				}
-
 				if (jarEntry.isDirectory()) {
 					file.mkdirs();
 				}
 				else {
 					InputStream is = null;
-					OutputStream os = null;
 
 					try {
 						is = jarFile.getInputStream(jarEntry);
-						os = FileUtils.openOutputStream(file);
 
-						IOUtils.copy(is, os);
+						FileUtils.copyInputStreamToFile(is, file);
 					}
 					finally {
 						IOUtils.closeQuietly(is);
-						IOUtils.closeQuietly(os);
 					}
 				}
 			}
@@ -108,7 +102,8 @@ public class WindowsSDKBuilder extends BaseBuilder {
 
 		File destinationDir = new File(destination);
 
-		destinationDir = destinationDir.getAbsoluteFile();
+		destinationDir = new File(
+			destinationDir.getAbsoluteFile(), CharPool.SLASH + name);
 
 		URL sourceURL = getClass().getResource(CharPool.SLASH + name);
 		URLConnection sourceConnection = sourceURL.openConnection();
@@ -154,7 +149,7 @@ public class WindowsSDKBuilder extends BaseBuilder {
 			sb.append(CharPool.SLASH);
 		}
 
-		sb.append("Liferay.SDK/Service");
+		sb.append("windows/Liferay.SDK/Service");
 		destination = sb.toString();
 
 		packageName = "Liferay.SDK.Service";
