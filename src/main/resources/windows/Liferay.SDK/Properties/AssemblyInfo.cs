@@ -5,9 +5,9 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Liferay SDK for Windows")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Provides the means to consume Liferay Portal's core and plugins remote services")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Andrea Di Giorgi")]
 [assembly: AssemblyProduct("Liferay SDK for Windows")]
 [assembly: AssemblyCopyright("Copyright (c) 2014 Andrea Di Giorgi. All rights reserved.")]
 [assembly: AssemblyTrademark("Liferay is a registered trademark of Liferay, Inc.")]
@@ -23,5 +23,5 @@ using System.Resources;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("6.2.0.1")]
+[assembly: AssemblyFileVersion("6.2.0.1")]
