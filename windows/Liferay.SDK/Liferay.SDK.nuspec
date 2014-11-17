@@ -10,10 +10,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides the means to consume Liferay Portal's core and plugins remote services</description>
     <releaseNotes>Removed unnecessary dependency from SimpleJson.</releaseNotes>
-    <copyright>Copyright (c) 2014 Andrea Di Giorgi. All rights reserved.</copyright>
     <tags>Client JSON Liferay Services SDK</tags>
   </metadata>
   <files>
-	<file src="bin\Release\*.dll" target="lib\portable-net451+win81+wpa81" />
+    <file src="bin\Release\*.dll" target="lib\portable-net451+win81+wpa81" />
   </files>
 </package>
