@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>6.2.0.1</version>
+    <title>Liferay SDK for Windows</title>
+    <authors>Andrea Di Giorgi</authors>
+    <owners>Andrea Di Giorgi</owners>
+    <projectUrl>https://github.com/Ithildir/liferay-sdk-builder-windows</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides the means to consume Liferay Portal's core and plugins remote services</description>
+    <releaseNotes>First release based on Liferay 6.2.0.</releaseNotes>
+    <copyright>Copyright (c) 2014 Andrea Di Giorgi. All rights reserved.</copyright>
+    <tags>Client JSON Liferay Services SDK</tags>
+  </metadata>
+</package>
