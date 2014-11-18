@@ -15,7 +15,7 @@ let me know if you're interested or send me a PR.
 ## Setup
 
 The Liferay SDK for Windows is available on [NuGet]
-(nuget.org/packages/Liferay.SDK/):
+(https://www.nuget.org/packages/Liferay.SDK/):
 
 ```ps
 Install-Package Liferay.SDK
