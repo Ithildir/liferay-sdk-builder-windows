@@ -111,6 +111,8 @@ version, so more detailed information about usage can be found at [this page]
 3. Create a `BlogsEntryService` object and make a service call:
 
 	```cs
+	var service = new BlogsEntryService(session);
+
 	var entries = await service.GetGroupEntriesAsync(10184, 0, -1, -1);
 	```
 
