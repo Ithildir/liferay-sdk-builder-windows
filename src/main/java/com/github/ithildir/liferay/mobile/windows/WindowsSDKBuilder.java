@@ -15,6 +15,7 @@
 package com.github.ithildir.liferay.mobile.windows;
 
 import com.liferay.mobile.sdk.BaseBuilder;
+import com.liferay.mobile.sdk.http.Action;
 import com.liferay.mobile.sdk.http.Discovery;
 import com.liferay.mobile.sdk.util.CharPool;
 import com.liferay.mobile.sdk.util.LanguageUtil;
@@ -31,6 +32,7 @@ import java.net.URLConnection;
 
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -47,12 +49,13 @@ public class WindowsSDKBuilder extends BaseBuilder {
 
 	@Override
 	public void build(
-			Discovery discovery, String packageName, int version, String filter,
-			String destination)
+			Discovery discovery, List<Action> actions, String packageName,
+			int version, String filter, String destination)
 		throws Exception {
 
 		copyResource("windows", destination);
-		generateService(discovery, packageName, version, filter, destination);
+		generateService(
+			discovery, actions, packageName, version, filter, destination);
 	}
 
 	protected void copyJarResource(
@@ -138,8 +141,8 @@ public class WindowsSDKBuilder extends BaseBuilder {
 	}
 
 	protected void generateService(
-			Discovery discovery, String packageName, int version, String filter,
-			String destination)
+			Discovery discovery, List<Action> actions, String packageName,
+			int version, String filter, String destination)
 		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
@@ -155,7 +158,7 @@ public class WindowsSDKBuilder extends BaseBuilder {
 		packageName = "Liferay.SDK.Service";
 
 		VelocityContext context = getVelocityContext(
-			discovery, packageName, version, filter);
+			discovery, actions, packageName, version, filter);
 
 		String templatePath = "templates/windows/service.vm";
 		String filePath = getServiceFilePath(
@@ -190,7 +193,8 @@ public class WindowsSDKBuilder extends BaseBuilder {
 	}
 
 	protected VelocityContext getVelocityContext(
-		Discovery discovery, String packageName, int version, String filter) {
+		Discovery discovery, List<Action> actions, String packageName,
+		int version, String filter) {
 
 		VelocityContext context = new VelocityContext();
 
@@ -208,6 +212,7 @@ public class WindowsSDKBuilder extends BaseBuilder {
 		context.put(BYTE_ARRAY, LanguageUtil.BYTE_ARRAY);
 		context.put(CLASS_NAME, cSharpUtil.getServiceClassName(filter));
 		context.put(DISCOVERY, discovery);
+		context.put(ACTIONS, actions);
 		context.put(ESCAPE_TOOL, new EscapeTool());
 		context.put(JSON_OBJECT_WRAPPER, CSharpUtil.JSON_OBJECT_WRAPPER);
 		context.put(LANGUAGE_UTIL, cSharpUtil);

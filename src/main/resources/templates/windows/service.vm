@@ -51,7 +51,6 @@ using System.Threading.Tasks;
 
 ##n
 
-#set ($actions = $discovery.actions)
 #set ($context = $discovery.context)
 
 namespace $package
