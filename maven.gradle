@@ -50,11 +50,7 @@ signing {
 	sign configurations.archives
 }
 
-task signPom(type: Sign, dependsOn: install) {
-	sign file('build/poms/pom-default.xml')
-}
-
-task publish(type: Copy, dependsOn: signPom) {
+task publish(type: Copy, dependsOn: install) {
 	group = project.description
 	description = 'Prepares artifacts for publishing to Maven Central.'
 	from 'build/poms'
@@ -62,5 +58,9 @@ task publish(type: Copy, dependsOn: signPom) {
 
 	rename { String name ->
 		name.replace('pom-default.xml', "${archivesBaseName}-${version}.pom")
+	}
+
+	doLast {
+		signing.sign file("build/libs/${archivesBaseName}-${version}.pom")
 	}
 }

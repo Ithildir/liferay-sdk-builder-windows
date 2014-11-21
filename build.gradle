@@ -45,6 +45,9 @@ sourceSets {
 			exclude '**/packages/**'
 		}
 	}
+
+configurations {
+	compile.exclude module: 'liferay-sdk-builder-sample'
 }
 
 task format(type: JavaExec) {
