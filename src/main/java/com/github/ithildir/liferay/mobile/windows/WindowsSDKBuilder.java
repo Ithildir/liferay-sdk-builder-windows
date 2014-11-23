@@ -149,7 +149,10 @@ public class WindowsSDKBuilder extends BaseBuilder {
 
 		if (Validator.isNotNull(destination)) {
 			sb.append(destination);
-			sb.append(CharPool.SLASH);
+
+			if (!destination.endsWith("/")) {
+				sb.append(CharPool.SLASH);
+			}
 		}
 
 		sb.append("windows/Liferay.SDK/Service");
