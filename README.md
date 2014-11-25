@@ -1,6 +1,6 @@
-# Liferay SDK Builder for Windows
+# Liferay SDK for Windows
 
-This repository contains the SDK Builder that generates the [Liferay Mobile SDK]
+This repository contains a version of the [Liferay Mobile SDK]
 (https://github.com/liferay/liferay-mobile-sdk) for the Windows ecosystem. This
 consists of a Portable Class Library written in C# targeting the following
 platforms:
