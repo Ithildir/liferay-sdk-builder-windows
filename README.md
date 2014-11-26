@@ -1,5 +1,7 @@
 # Liferay SDK for Windows
 
+![Liferay + Windows = Love](https://raw.githubusercontent.com/Ithildir/liferay-sdk-builder-windows/master/logo.png)
+
 This repository contains a version of the [Liferay Mobile SDK]
 (https://github.com/liferay/liferay-mobile-sdk) for the Windows ecosystem. This
 consists of a Portable Class Library written in C# targeting the following
