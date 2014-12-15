@@ -6,6 +6,7 @@
     <title>Liferay SDK for Windows</title>
     <authors>Andrea Di Giorgi</authors>
     <owners>Andrea Di Giorgi</owners>
+    <licenseUrl>https://raw.githubusercontent.com/Ithildir/liferay-sdk-builder-windows/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/Ithildir/liferay-sdk-builder-windows</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides the means to consume Liferay Portal's core and plugins remote services</description>
