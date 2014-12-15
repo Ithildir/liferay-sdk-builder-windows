@@ -212,7 +212,6 @@ public class WindowsSDKBuilder extends BaseBuilder {
 
 		packageName = sb.toString();
 
-		context.put(BYTE_ARRAY, LanguageUtil.BYTE_ARRAY);
 		context.put(CLASS_NAME, cSharpUtil.getServiceClassName(filter));
 		context.put(DISCOVERY, discovery);
 		context.put(ACTIONS, actions);
@@ -220,11 +219,14 @@ public class WindowsSDKBuilder extends BaseBuilder {
 		context.put(JSON_OBJECT_WRAPPER, CSharpUtil.JSON_OBJECT_WRAPPER);
 		context.put(LANGUAGE_UTIL, cSharpUtil);
 		context.put(PACKAGE, packageName);
+		context.put(STREAM, CSharpUtil.STREAM);
 		context.put(VOID, LanguageUtil.VOID);
 
 		return context;
 	}
 
 	protected static final String PACKAGE = "package";
+
+	protected static final String STREAM = "STREAM";
 
 }

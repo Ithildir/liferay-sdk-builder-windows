@@ -16,6 +16,7 @@
 // <website>https://github.com/Ithildir/liferay-sdk-builder-windows</website>
 //------------------------------------------------------------------------------
 
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace Liferay.SDK.Test
 		private const string FolderName = "test";
 
 		private const string FolderName2 = "test2";
-		
+
 		private const string MimeType = "text/plain";
 
 		private const long ParentFolderId = 0;
@@ -47,6 +48,22 @@ namespace Liferay.SDK.Test
 			var bytes = Encoding.UTF8.GetBytes("Hello");
 
 			var fileEntry = await service.AddFileEntryAsync(repositoryId, ParentFolderId, SourceFileName, MimeType, SourceFileName, string.Empty, string.Empty, bytes, null);
+
+			Assert.AreEqual(SourceFileName, fileEntry.title);
+
+			await service.DeleteFileEntryAsync(fileEntry.fileEntryId);
+		}
+
+		[TestMethod]
+		public async Task TestAddFileEntryStream()
+		{
+			var service = new DLAppService(this.Session);
+			var repositoryId = GroupId;
+
+			var bytes = Encoding.UTF8.GetBytes("Hello");
+			var stream = new MemoryStream(bytes);
+
+			var fileEntry = await service.AddFileEntryAsync(repositoryId, ParentFolderId, SourceFileName, MimeType, SourceFileName, string.Empty, string.Empty, stream, null);
 
 			Assert.AreEqual(SourceFileName, fileEntry.title);
 

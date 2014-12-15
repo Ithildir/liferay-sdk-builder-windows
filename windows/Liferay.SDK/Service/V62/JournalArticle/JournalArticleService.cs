@@ -126,7 +126,7 @@ namespace Liferay.SDK.Service.V62.JournalArticle
 				{ "/journalarticle/add-article", _parameters }
 			};
 
-			var _obj = await this.Session.InvokeAsync(_command);
+			var _obj = await this.Session.UploadAsync(_command);
 
 			return (dynamic)_obj;
 		}
@@ -1163,7 +1163,7 @@ namespace Liferay.SDK.Service.V62.JournalArticle
 				{ "/journalarticle/update-article", _parameters }
 			};
 
-			var _obj = await this.Session.InvokeAsync(_command);
+			var _obj = await this.Session.UploadAsync(_command);
 
 			return (dynamic)_obj;
 		}

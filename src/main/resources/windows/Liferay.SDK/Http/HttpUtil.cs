@@ -81,11 +81,7 @@ namespace Liferay.SDK.Http
 
 					HttpContent content;
 
-					if (value is byte[])
-					{
-						content = new ByteArrayContent((byte[])value);
-					}
-					else if (value is Stream)
+					if (value is Stream)
 					{
 						content = new StreamContent((Stream)value);
 					}
@@ -123,11 +119,11 @@ namespace Liferay.SDK.Http
 			{
 				var jsonObject = (JsonObject)obj;
 
-				var message = (string)jsonObject["exception"];
+				object message;
 
-				if (!string.IsNullOrWhiteSpace(message))
+				if (jsonObject.TryGetValue("exception", out message))
 				{
-					throw new ServerException(message);
+					throw new ServerException((string)message);
 				}
 			}
 		}

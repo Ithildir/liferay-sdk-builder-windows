@@ -80,7 +80,7 @@ namespace $package
 		#set ($parameterName = $parameter.name)
 		#set ($parameterType = $languageUtil.getType($parameter.type))
 
-		#if (($parameterType == $BYTE_ARRAY) || ($parameterType == $STREAM))
+		#if ($parameterType == $STREAM)
 			#set ($invokeMethod = "UploadAsync")
 		#end
 
@@ -107,9 +107,9 @@ namespace $package
 	#set ($ienumerableReturnCastType = $languageUtil.getIEnumerableCastType($action.response))
 
 	#if ($returnType == $VOID)
-		##t			await this.Session.InvokeAsync(_command);
+		##t			await this.Session.$invokeMethod(_command);
 	#else
-		##t			var _obj = await this.Session.InvokeAsync(_command);
+		##t			var _obj = await this.Session.$invokeMethod(_command);
 
 		##n
 

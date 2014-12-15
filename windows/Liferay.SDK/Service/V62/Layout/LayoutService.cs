@@ -584,7 +584,7 @@ namespace Liferay.SDK.Service.V62.Layout
 				{ "/layout/import-layouts", _parameters }
 			};
 
-			await this.Session.InvokeAsync(_command);
+			await this.Session.UploadAsync(_command);
 		}
 
 		public async Task<long> ImportLayoutsInBackgroundAsync(string taskName, long groupId, bool privateLayout, IDictionary<string, object> parameterMap, Stream file)
@@ -602,7 +602,7 @@ namespace Liferay.SDK.Service.V62.Layout
 				{ "/layout/import-layouts-in-background", _parameters }
 			};
 
-			var _obj = await this.Session.InvokeAsync(_command);
+			var _obj = await this.Session.UploadAsync(_command);
 
 			return (long)_obj;
 		}
@@ -620,7 +620,7 @@ namespace Liferay.SDK.Service.V62.Layout
 				{ "/layout/import-portlet-info", _parameters }
 			};
 
-			await this.Session.InvokeAsync(_command);
+			await this.Session.UploadAsync(_command);
 		}
 
 		public async Task ImportPortletInfoAsync(long plid, long groupId, string portletId, IDictionary<string, object> parameterMap, Stream file)
@@ -638,7 +638,7 @@ namespace Liferay.SDK.Service.V62.Layout
 				{ "/layout/import-portlet-info", _parameters }
 			};
 
-			await this.Session.InvokeAsync(_command);
+			await this.Session.UploadAsync(_command);
 		}
 
 		public async Task ImportPortletInfoInBackgroundAsync(string taskName, string portletId, IDictionary<string, object> parameterMap, Stream file)
@@ -655,7 +655,7 @@ namespace Liferay.SDK.Service.V62.Layout
 				{ "/layout/import-portlet-info-in-background", _parameters }
 			};
 
-			await this.Session.InvokeAsync(_command);
+			await this.Session.UploadAsync(_command);
 		}
 
 		public async Task<long> ImportPortletInfoInBackgroundAsync(string taskName, long plid, long groupId, string portletId, IDictionary<string, object> parameterMap, Stream file)
@@ -674,7 +674,7 @@ namespace Liferay.SDK.Service.V62.Layout
 				{ "/layout/import-portlet-info-in-background", _parameters }
 			};
 
-			var _obj = await this.Session.InvokeAsync(_command);
+			var _obj = await this.Session.UploadAsync(_command);
 
 			return (long)_obj;
 		}
@@ -1030,7 +1030,7 @@ namespace Liferay.SDK.Service.V62.Layout
 				{ "/layout/validate-import-layouts-file", _parameters }
 			};
 
-			var _obj = await this.Session.InvokeAsync(_command);
+			var _obj = await this.Session.UploadAsync(_command);
 
 			return (dynamic)_obj;
 		}
@@ -1050,7 +1050,7 @@ namespace Liferay.SDK.Service.V62.Layout
 				{ "/layout/validate-import-portlet-info", _parameters }
 			};
 
-			var _obj = await this.Session.InvokeAsync(_command);
+			var _obj = await this.Session.UploadAsync(_command);
 
 			return (dynamic)_obj;
 		}

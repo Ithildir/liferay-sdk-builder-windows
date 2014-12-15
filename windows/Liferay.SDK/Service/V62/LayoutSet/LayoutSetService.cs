@@ -79,7 +79,7 @@ namespace Liferay.SDK.Service.V62.LayoutSet
 				{ "/layoutset/update-logo", _parameters }
 			};
 
-			await this.Session.InvokeAsync(_command);
+			await this.Session.UploadAsync(_command);
 		}
 
 		public async Task<dynamic> UpdateLookAndFeelAsync(long groupId, bool privateLayout, string themeId, string colorSchemeId, string css, bool wapTheme)

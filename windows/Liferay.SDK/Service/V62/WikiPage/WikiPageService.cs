@@ -91,7 +91,7 @@ namespace Liferay.SDK.Service.V62.WikiPage
 				{ "/wikipage/add-page-attachment", _parameters }
 			};
 
-			await this.Session.InvokeAsync(_command);
+			await this.Session.UploadAsync(_command);
 		}
 
 		public async Task AddPageAttachmentsAsync(long nodeId, string title, IEnumerable<object> inputStreamOVPs)

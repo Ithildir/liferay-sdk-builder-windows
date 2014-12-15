@@ -80,7 +80,7 @@ namespace Liferay.SDK.Service.V62.ShoppingItem
 				{ "/shoppingitem/add-item", _parameters }
 			};
 
-			var _obj = await this.Session.InvokeAsync(_command);
+			var _obj = await this.Session.UploadAsync(_command);
 
 			return (dynamic)_obj;
 		}
@@ -237,7 +237,7 @@ namespace Liferay.SDK.Service.V62.ShoppingItem
 				{ "/shoppingitem/update-item", _parameters }
 			};
 
-			var _obj = await this.Session.InvokeAsync(_command);
+			var _obj = await this.Session.UploadAsync(_command);
 
 			return (dynamic)_obj;
 		}
