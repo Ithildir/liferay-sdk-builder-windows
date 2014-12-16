@@ -17,7 +17,7 @@ configurations {
 }
 
 dependencies {
-	compile group: 'com.liferay.mobile', name: 'liferay-sdk-builder', version: '6.2.0.+'
+	compile "com.liferay.mobile:liferay-sdk-builder:[6.2.0.9,)"
 	compile group: 'commons-io', name: 'commons-io', version: '2.4'
 
 	formatter group: 'com.liferay.portal', name: 'portal-impl', version: '6.2.0-ga1'
