@@ -79,7 +79,7 @@ Central:
 	```
 
 Have a look at [this page]
-(https://github.com/liferay/liferay-mobile-sdk/tree/master/builder#configuring)
+(https://github.com/liferay/liferay-mobile-sdk/tree/master/builder#properties)
 to find the various configuration options available in `gradle.properties`.
 
 ## Compatibility
