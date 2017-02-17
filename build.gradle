@@ -79,4 +79,31 @@ task generate(type: JavaExec) {
 	]
 }
 
+task replaceCopyrightWindows {
+	group = project.description
+	description = 'Replaces the copyright information in .cs files.'
+
+	doLast {
+		def csFileTree = fileTree(dir: projectDir, include: '**/*.cs')
+
+		def copyrightEnd = '//------------------------------------------------------------------------------'
+
+		def copyrightFile = file('src/copyright-windows.txt')
+
+		def copyright = copyrightFile.text
+
+		csFileTree.each {
+			csFile ->
+
+			def content = csFile.text
+
+			def pos = content.lastIndexOf(copyrightEnd)
+
+			content = copyright.replace('${fileName}', csFile.name) + content.substring(pos + copyrightEnd.length())
+
+			csFile.text = content
+		}
+	}
+}
+
 apply from: 'maven.gradle'
