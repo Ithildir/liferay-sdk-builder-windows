@@ -2,10 +2,9 @@
 
 ![Liferay + Windows = Love](https://raw.githubusercontent.com/Ithildir/liferay-sdk-builder-windows/master/logo.png)
 
-This repository contains a version of the [Liferay Mobile SDK]
-(https://github.com/liferay/liferay-mobile-sdk) for the Windows ecosystem. This
-consists of a Portable Class Library written in C# targeting the following
-platforms:
+This repository contains a version of the [Liferay Mobile SDK](https://github.com/liferay/liferay-mobile-sdk)
+for the Windows ecosystem. This consists of a Portable Class Library written in 
+C# targeting the following platforms:
 
 * .NET Framework 4.5.1
 * Windows 8.1
@@ -16,19 +15,16 @@ let me know if you're interested or send me a PR.
 
 ## Setup
 
-The Liferay SDK for Windows is available on [NuGet]
-(https://www.nuget.org/packages/Liferay.SDK/):
+The Liferay SDK for Windows is available on [NuGet](https://www.nuget.org/packages/Liferay.SDK/):
 
 ```ps
 Install-Package Liferay.SDK
 ```
 
-Alternatively, the source code of the SDK is available in the [*windows*]
-(https://github.com/Ithildir/liferay-sdk-builder-windows/tree/master/windows)
+Alternatively, the source code of the SDK is available in the [*windows*](https://github.com/Ithildir/liferay-sdk-builder-windows/tree/master/windows)
 folder. This contains the Visual Studio Express 2013 solution with the SDK
 project and a Unit Test library project which replicates almost all unit tests
-of the [Liferay Android SDK]
-(https://github.com/liferay/liferay-mobile-sdk/tree/master/android).
+of the [Liferay Android SDK](https://github.com/liferay/liferay-mobile-sdk/tree/master/android).
 
 ## Build
 
@@ -45,8 +41,7 @@ essentially three options available:
 	gradlew generate
 	```
 
-2. with Gradle, from the Liferay Mobile SDK [repository]
-(https://github.com/liferay/liferay-mobile-sdk):
+2. with Gradle, from the Liferay Mobile SDK [repository](https://github.com/liferay/liferay-mobile-sdk):
 
 	1. clone the repository:
 
@@ -78,23 +73,20 @@ Central:
 	</dependency>
 	```
 
-Have a look at [this page]
-(https://github.com/liferay/liferay-mobile-sdk/tree/master/builder#properties)
+Have a look at [this page](https://github.com/liferay/liferay-mobile-sdk/tree/master/builder#properties)
 to find the various configuration options available in `gradle.properties`.
 
 ## Compatibility
 
-The Liferay SDK for Windows follows the same exact [versioning scheme]
-(https://github.com/liferay/liferay-mobile-sdk/tree/master/android#liferay) of
-the official Liferay Mobile SDK, so, for example, version 6.2.0.1 of the SDK is
-built to work with Liferay Portal 6.2.0, while version 7.0.0.1 works with
+The Liferay SDK for Windows follows the same exact [versioning scheme](https://github.com/liferay/liferay-mobile-sdk/tree/master/android#liferay) 
+of the official Liferay Mobile SDK, so, for example, version 6.2.0.1 of the SDK 
+is built to work with Liferay Portal 6.2.0, while version 7.0.0.1 works with
 Liferay Portal 7.0.0.
 
 ## Use
 
 The Liferay SDK for Windows is an almost line-by-line port of the Android
-version, so more detailed information about usage can be found at [this page]
-(https://github.com/Ithildir/liferay-mobile-sdk/tree/master/android#use).
+version, so more detailed information about usage can be found at [this page](https://github.com/Ithildir/liferay-mobile-sdk/tree/master/android#use).
 
 1. Create a `Session` with the user credentials:
 
@@ -133,24 +125,21 @@ version, so more detailed information about usage can be found at [this page]
 ### Batch
 
 The SDK allows sending requests using batch processing, which can be much more
-efficient in some cases. Read [DLAppServiceTest.cs]
-(https://github.com/Ithildir/liferay-sdk-builder-windows/blob/master/windows/Liferay.SDK.Test/DLAppServiceTest.cs)
+efficient in some cases. Read [DLAppServiceTest.cs](https://github.com/Ithildir/liferay-sdk-builder-windows/blob/master/windows/Liferay.SDK.Test/DLAppServiceTest.cs)
 to find an example on how to create a batch of calls and send them all together.
 
 ### Non-primitive arguments
 
 There are some special cases in which service methods arguments are not
 primitives. In these cases, you should use `JsonObjectWrapper`. Read
-[OrderByComparatorTest.cs]
-(https://github.com/Ithildir/liferay-sdk-builder-windows/blob/master/windows/Liferay.SDK.Test/OrderByComparatorTest.cs)
-and [ServiceContextTest.cs]
-(https://github.com/Ithildir/liferay-sdk-builder-windows/blob/master/windows/Liferay.SDK.Test/ServiceContextTest.cs)
+[OrderByComparatorTest.cs](https://github.com/Ithildir/liferay-sdk-builder-windows/blob/master/windows/Liferay.SDK.Test/OrderByComparatorTest.cs)
+and [ServiceContextTest.cs](https://github.com/Ithildir/liferay-sdk-builder-windows/blob/master/windows/Liferay.SDK.Test/ServiceContextTest.cs)
 to find examples on how to use non-primitive arguments in service methods.
 
 ### Binaries
 
-Some Liferay services require argument types such as byte arrays (`byte[]`) and Streams (`System.IO.Stream`). Read [DLAppServiceTest.cs]
-(https://github.com/Ithildir/liferay-sdk-builder-windows/blob/master/windows/Liferay.SDK.Test/DLAppServiceTest.cs)
+Some Liferay services require argument types such as byte arrays (`byte[]`) and 
+Streams (`System.IO.Stream`). Read [DLAppServiceTest.cs](https://github.com/Ithildir/liferay-sdk-builder-windows/blob/master/windows/Liferay.SDK.Test/DLAppServiceTest.cs)
 to find an example on how to send binary data to the portal.
 
 ## License
