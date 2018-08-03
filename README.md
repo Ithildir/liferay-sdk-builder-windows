@@ -1,4 +1,4 @@
-# Liferay SDK for Windows
+# The Liferay SDK for Windows has become official and it has been moved to the [*Liferay Mobile SDK*](https://github.com/liferay/liferay-mobile-sdk/tree/master/windows) repository! :tada:
 
 ![Liferay + Windows = Love](https://raw.githubusercontent.com/Ithildir/liferay-sdk-builder-windows/master/logo.png)
 
